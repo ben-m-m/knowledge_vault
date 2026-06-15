@@ -44,7 +44,7 @@
                         Search books or notes
                     </label>
 
-                    <input type="search" id="global-search" name="search" placeholder="Search books or notes">
+                    <input type="search" id="global-search" name="search" placeholder="Search books or notes" autocomplete="off">
 
                     <button type="submit">
                         Search
@@ -72,55 +72,70 @@
         <div class="page-shell">
 
 
-        <section id="dashboard">
+        <section id="dashboard" aria-labelledby="dashboard-heading">
 
-            <h2>Dashboard</h2>
+            <h2 id="dashboard-heading">Dashboard</h2>
 
             <div class="stats-grid">
 
                 <article class="dashboard-stat">
-                    <h3>Total Books</h3>
-                    <p>0</p>
+                    <h3 id="total-books-label">Total Books</h3>
+                    <output id="total-books" class="dashboard-stat__value" aria-labelledby="total-books-label">0</output>
                 </article>
 
                 <article class="dashboard-stat">
-                    <h3>Total Pages</h3>
-                    <p>0</p>
+                    <h3 id="total-pages-label">Total Pages</h3>
+                    <output id="total-pages" class="dashboard-stat__value" aria-labelledby="total-pages-label">0</output>
                 </article>
 
                 <article class="dashboard-stat">
-                    <h3>Top Tag</h3>
-                    <p>None</p>
+                    <h3 id="top-tag-label">Top Tag</h3>
+                    <output id="top-tag" class="dashboard-stat__value" aria-labelledby="top-tag-label">None</output>
                 </article>
 
                 <article class="dashboard-stat">
-                    <h3>Reading Goal</h3>
-                    <p>0 / 5000 Pages</p>
+                    <h3 id="reading-goal-label">Reading Goal</h3>
+                    <output id="reading-goal-output" class="dashboard-stat__value" aria-labelledby="reading-goal-label">0 / 5000 Pages</output>
                 </article>
 
                 <article class="dashboard-stat">
-                    <h3>Recently Added</h3>
-                    <p>Mythology</p>
+                    <h3 id="recently-added-label">Recently Added</h3>
+                    <output id="recently-added" class="dashboard-stat__value" aria-labelledby="recently-added-label">Mythology</output>
                 </article>
 
                 <article class="dashboard-stat">
-                    <h3>Currently Reading</h3>
-                    <p>Mythology</p>
+                    <h3 id="currently-reading-label">Currently Reading</h3>
+                    <output id="currently-reading" class="dashboard-stat__value" aria-labelledby="currently-reading-label">Mythology</output>
                 </article>
 
             </div>
 
         </section>
 
-        <section id="library">
+        <section id="library" aria-labelledby="library-heading">
 
-            <h2>My Library</h2>
+            <h2 id="library-heading">My Library</h2>
 
             <div class="library-controls">
-                <form class="library-controls__form">
-                    <label for="book-sort">
-                        Sort By
-                    </label>
+                <form class="library-controls__form" role="search" aria-label="Library search and controls">
+
+                    <label for="library-search" class="sr-only">Search library</label>
+                    <input type="search" id="library-search" name="library-search" placeholder="Search books or notes in library" autocomplete="off">
+                    <div class="form-error" id="error-library-search" aria-live="polite">&nbsp;</div>
+
+                    <div class="library-controls__toggles">
+                        <label>
+                            <input type="checkbox" id="library-regex" name="library-regex">
+                            Regex Search
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="library-case" name="library-case">
+                            Case Sensitive
+                        </label>
+                    </div>
+
+                    <label for="book-sort">Sort</label>
                     <select id="book-sort" name="book-sort">
                         <option>Title (A-Z)</option>
                         <option>Title (Z-A)</option>
@@ -129,10 +144,11 @@
                         <option>Newest</option>
                         <option>Oldest</option>
                     </select>
+
                 </form>
             </div>
 
-            <div class="book-grid">
+            <div class="book-grid" id="book-grid">
 
                 <article class="book-card" data-book-id="mythology" data-status="reading">
 
@@ -214,29 +230,33 @@
 
         </section>
 
-        <section id="add-book">
+        <section id="add-book" aria-labelledby="add-book-heading">
 
-            <h2>Add Book</h2>
+            <h2 id="add-book-heading">Add Book</h2>
 
             <form class="book-form">
 
                 <div class="book-form__group">
 
                     <label for="book-title">Book Title</label>
-                    <input type="text" id="book-title" name="title">
+                    <input type="text" id="book-title" name="title" required>
+                    <div class="form-error" id="error-book-title" aria-live="polite">&nbsp;</div>
 
                     <label for="book-author">Author</label>
-                    <input type="text" id="book-author" name="author">
+                    <input type="text" id="book-author" name="author" autocomplete="name" required>
+                    <div class="form-error" id="error-book-author" aria-live="polite">&nbsp;</div>
 
                     <label for="book-pages">Pages</label>
-                    <input type="number" id="book-pages" name="pages">
+                    <input type="number" id="book-pages" name="pages" required>
+                    <div class="form-error" id="error-book-pages" aria-live="polite">&nbsp;</div>
 
                     <label for="book-tag">Tag</label>
-                    <input type="text" id="book-tag" name="tag">
+                    <input type="text" id="book-tag" name="tag" autocomplete="off">
+                    <div class="form-error" id="error-book-tag" aria-live="polite">&nbsp;</div>
 
                     <label for="book-status">Reading Status</label>
 
-                    <select id="book-status" name="status">
+                    <select id="book-status" name="status" required>
 
                         <option>Want to Read</option>
 
@@ -245,18 +265,22 @@
                         <option>Completed</option>
 
                     </select>
+                    <div class="form-error" id="error-book-status" aria-live="polite">&nbsp;</div>
 
                     <label for="book-rating">Rating</label>
 
                     <input type="range" id="book-rating" name="rating" min="1" max="5">
+                    <div class="form-error" id="error-book-rating" aria-live="polite">&nbsp;</div>
 
                     <label for="book-date-added">Date Added</label>
                     <input type="date" id="book-date-added" name="date-added">
+                    <div class="form-error" id="error-book-date-added" aria-live="polite">&nbsp;</div>
 
                     <label for="book-cover">
                         Book Cover
                     </label>
                     <input type="file" id="book-cover" accept="image/*" name="cover">
+                    <div class="form-error" id="error-book-cover" aria-live="polite">&nbsp;</div>
 
                     <label for="book-summary">
 
@@ -265,6 +289,7 @@
                     </label>
 
                     <textarea id="book-summary" name="summary"></textarea>
+                    <div class="form-error" id="error-book-summary" aria-live="polite">&nbsp;</div>
 
                 </div>
 
@@ -288,7 +313,7 @@
                     Search notes
                 </label>
 
-                <input type="search" id="note-search" placeholder="Search notes..." name="note-search">
+                <input type="search" id="note-search" placeholder="Search notes..." name="note-search" autocomplete="off">
 
                 <label for="note-sort">
                     Sort
@@ -371,18 +396,21 @@
                     </label>
 
                     <input type="number" id="reading-goal" name="reading-goal" value="5000">
+                    <div class="form-error" id="error-reading-goal" aria-live="polite">&nbsp;</div>
 
                     <label for="reading-speed">
                         Reading Speed (Pages/Hour)
                     </label>
 
                     <input type="number" id="reading-speed" name="reading-speed" value="50">
+                    <div class="form-error" id="error-reading-speed" aria-live="polite">&nbsp;</div>
 
                 </fieldset>
 
                 <fieldset>
 
                     <legend>Conversion</legend>
+
 
                     <label for="preferred-unit">
                         Preferred Unit
@@ -395,6 +423,7 @@
                         <option>Chapters</option>
 
                     </select>
+                    <div class="form-error" id="error-preferred-unit" aria-live="polite">&nbsp;</div>
 
                 </fieldset>
 
