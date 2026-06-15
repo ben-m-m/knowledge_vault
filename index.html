@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Vault | Book & Notes Vault</title>
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+
+        <div class="site-header__shell">
+
+            <div class="site-header__brand">
+                <a href="#dashboard" class="logo-link">
+                    <img src="assets/images/logo.png" alt="Knowledge Vault logo" class="logo">
+                </a>
+                <h1>KnowledgeVault</h1>
+            </div>
+
+            <div class="site-header__controls">
+
+                <nav class="site-nav" aria-label="Primary navigation">
+
+                    <ul class="site-nav__list">
+                        <li><a href="#dashboard" aria-current="page">Dashboard</a></li>
+                        <li><a href="#library">Library</a></li>
+                        <li><a href="#notes">Notes</a></li>
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+
+                </nav>
+
+                <form class="search-form search-form--header" role="search">
+
+                    <label for="global-search" class="sr-only">
+                        Search books or notes
+                    </label>
+
+                    <input type="search" id="global-search" name="search" placeholder="Search books or notes">
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <div class="user-profile user-profile--header">
+
+                    <img src="assets/images/user-avatar.png" alt="User profile picture" class="user-profile__avatar">
+
+                    <span>Ben M</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main id="main-content" class="page-main">
+
+
+        <div class="page-shell">
+
+
+        <section id="dashboard">
+
+            <h2>Dashboard</h2>
+
+            <div class="stats-grid">
+
+                <article class="dashboard-stat">
+                    <h3>Total Books</h3>
+                    <p>0</p>
+                </article>
+
+                <article class="dashboard-stat">
+                    <h3>Total Pages</h3>
+                    <p>0</p>
+                </article>
+
+                <article class="dashboard-stat">
+                    <h3>Top Tag</h3>
+                    <p>None</p>
+                </article>
+
+                <article class="dashboard-stat">
+                    <h3>Reading Goal</h3>
+                    <p>0 / 5000 Pages</p>
+                </article>
+
+                <article class="dashboard-stat">
+                    <h3>Recently Added</h3>
+                    <p>Mythology</p>
+                </article>
+
+                <article class="dashboard-stat">
+                    <h3>Currently Reading</h3>
+                    <p>Mythology</p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section id="library">
+
+            <h2>My Library</h2>
+
+            <div class="library-controls">
+                <form class="library-controls__form">
+                    <label for="book-sort">
+                        Sort By
+                    </label>
+                    <select id="book-sort" name="book-sort">
+                        <option>Title (A-Z)</option>
+                        <option>Title (Z-A)</option>
+                        <option>Pages (Low-High)</option>
+                        <option>Pages (High-Low)</option>
+                        <option>Newest</option>
+                        <option>Oldest</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="book-grid">
+
+                <article class="book-card" data-book-id="mythology" data-status="reading">
+
+                    <img src="assets/images/placeholder-cover.png" alt="Mythology book cover placeholder" class="book-card__cover"
+                        loading="lazy">
+
+                    <div class="book-card__content">
+
+                        <h3>Mythology</h3>
+
+                        <p class="book-card__author">
+                            <strong>Author:</strong>Edith Hamilton
+                        </p>
+
+                        <p class="book-card__pages">
+                            <strong>Pages:</strong> 450
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong> Reading
+                        </p>
+
+                        <p>
+                            <strong>Rating:</strong> 5
+                        </p>
+
+                        <span class="book-card__tag">Fiction</span>
+                    </div>
+
+                    <div class="book-card__actions">
+
+                        <button type="button" class="view-btn" data-action="view" aria-label="View Mythology">View</button>
+                        <button type="button" class="edit-btn" data-action="edit" aria-label="Edit Mythology">Edit</button>
+                        <button type="button" class="delete-btn" data-action="delete" aria-label="Delete Mythology">Delete</button>
+
+                    </div>
+
+                </article>
+
+                <article class="book-card" data-book-id="atomic-habits" data-status="reading">
+
+                    <img src="assets/images/placeholder-cover.png" alt="Atomic Habits book cover placeholder" class="book-card__cover"
+                        loading="lazy">
+
+                    <div class="book-card__content">
+
+                        <h3>Atomic Habits</h3>
+
+                        <p class="book-card__author">
+                            <strong>Author:</strong>James Cleer
+                        </p>
+
+                        <p class="book-card__pages">
+                            <strong>Pages:</strong> 300
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong> Reading
+                        </p>
+
+                        <p>
+                            <strong>Rating:</strong> 5
+                        </p>
+
+                        <span class="book-card__tag">self-Help</span>
+                    </div>
+
+                    <div class="book-card__actions">
+
+                        <button type="button" class="view-btn" data-action="view" aria-label="View Atomic Habits">View</button>
+                        <button type="button" class="edit-btn" data-action="edit" aria-label="Edit Atomic Habits">Edit</button>
+                        <button type="button" class="delete-btn" data-action="delete" aria-label="Delete Atomic Habits">Delete</button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section id="add-book">
+
+            <h2>Add Book</h2>
+
+            <form class="book-form">
+
+                <div class="book-form__group">
+
+                    <label for="book-title">Book Title</label>
+                    <input type="text" id="book-title" name="title">
+
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" name="author">
+
+                    <label for="book-pages">Pages</label>
+                    <input type="number" id="book-pages" name="pages">
+
+                    <label for="book-tag">Tag</label>
+                    <input type="text" id="book-tag" name="tag">
+
+                    <label for="book-status">Reading Status</label>
+
+                    <select id="book-status" name="status">
+
+                        <option>Want to Read</option>
+
+                        <option>Reading</option>
+
+                        <option>Completed</option>
+
+                    </select>
+
+                    <label for="book-rating">Rating</label>
+
+                    <input type="range" id="book-rating" name="rating" min="1" max="5">
+
+                    <label for="book-date-added">Date Added</label>
+                    <input type="date" id="book-date-added" name="date-added">
+
+                    <label for="book-cover">
+                        Book Cover
+                    </label>
+                    <input type="file" id="book-cover" accept="image/*" name="cover">
+
+                    <label for="book-summary">
+
+                        First Note / Summary
+
+                    </label>
+
+                    <textarea id="book-summary" name="summary"></textarea>
+
+                </div>
+
+                <button type="submit">
+
+                    Save Book
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <section id="notes" aria-labelledby="notes-heading">
+
+            <h2 id="notes-heading">My Notes</h2>
+
+            <div class="notes-toolbar">
+
+                <label for="note-search" class="sr-only">
+                    Search notes
+                </label>
+
+                <input type="search" id="note-search" placeholder="Search notes..." name="note-search">
+
+                <label for="note-sort">
+                    Sort
+                </label>
+
+                <select id="note-sort" name="note-sort">
+
+                    <option>Newest</option>
+                    <option>Oldest</option>
+                    <option>Book Title (A-Z)</option>
+
+                </select>
+
+                <button type="button" class="btn btn--secondary" data-filter="recent">
+                    Recent
+                </button>
+
+                <button type="button" class="btn btn--secondary" data-filter="highlighted">
+                    Highlighted
+                </button>
+
+            </div>
+
+
+            <div id="notes-list" class="notes-list">
+
+                <article class="note-card" data-note-id="mythology-highlight">
+
+                    <div class="note-card__content">
+                        <h3>Mythology</h3>
+
+                        <p>
+                            The Greek and Roman tales of heroes, gods and myths...
+                        </p>
+
+                        <p>
+                            <strong>Created:</strong>
+                            <time datetime="2026-06-12">
+                                June 12, 2026
+                            </time>
+                        </p>
+                    </div>
+
+                    <span class="note-card__badge">
+                        Highlight
+                    </span>
+
+                    <div class="note-card__actions">
+
+                        <button type="button" class="btn btn--secondary" disabled aria-label="Edit Mythology note">
+                            Edit note
+                        </button>
+
+                        <button type="button" class="btn btn--danger" disabled aria-label="Delete Mythology note">
+                            Delete note
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section id="settings" aria-labelledby="settings-heading">
+
+            <h2 id="settings-heading">
+                Settings
+            </h2>
+
+            <form class="settings-form">
+
+                <fieldset>
+
+                    <legend>Reading Goals</legend>
+
+                    <label for="reading-goal">
+                        Reading Goal (Pages)
+                    </label>
+
+                    <input type="number" id="reading-goal" name="reading-goal" value="5000">
+
+                    <label for="reading-speed">
+                        Reading Speed (Pages/Hour)
+                    </label>
+
+                    <input type="number" id="reading-speed" name="reading-speed" value="50">
+
+                </fieldset>
+
+                <fieldset>
+
+                    <legend>Conversion</legend>
+
+                    <label for="preferred-unit">
+                        Preferred Unit
+                    </label>
+
+                    <select id="preferred-unit" name="preferred-unit">
+
+                        <option>Pages</option>
+
+                        <option>Chapters</option>
+
+                    </select>
+
+                </fieldset>
+
+
+                <fieldset>
+
+                    <legend>Import / Export</legend>
+
+                    <button type="button" class="btn btn--secondary" data-action="import-json">
+                        Import JSON
+                    </button>
+
+                    <button type="button" class="btn btn--primary" data-action="export-json">
+                        Export JSON
+                    </button>
+
+                </fieldset>
+
+                <fieldset>
+
+                    <legend>Appearance</legend>
+
+                    <label>
+
+                        <input type="radio" name="theme" value="light" checked>
+
+                        Light
+
+                    </label>
+
+                    <label>
+
+                        <input type="radio" name="theme" value="dark">
+
+                        Dark
+
+                    </label>
+
+                </fieldset>
+
+            </form>
+
+        </section>
+
+        <section id="about" aria-labelledby="about-heading">
+
+            <h2 id="about-heading">
+                About KnowledgeVault
+            </h2>
+
+            <p>
+                KnowledgeVault helps students organize books,
+                reading progress and notes in one accessible,
+                responsive application.
+            </p>
+
+            <dl>
+
+                <dt>Developer</dt>
+                <dd>Ben M</dd>
+
+                <dt>GitHub</dt>
+                <dd>
+                    <a href="https://github.com/ben-m-m">
+                        github.com/ben-m-m
+                    </a>
+                </dd>
+
+                <dt>Email</dt>
+                <dd>
+                    <a href="mailto:b.maina1@alustudent.com">
+                        b.maina1@alustudent.com
+                    </a>
+                </dd>
+
+                <dt>Version</dt>
+                <dd>1.0.0</dd>
+
+            </dl>
+
+        </section>
+
+        <div id="status-message" role="status" aria-live="polite">
+
+        </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+
+        <p>&copy; 2026 KnowledgeVault</p>
+
+        <p>
+            Email:
+            <a href="mailto:you@example.com">
+                b.maina1@alustudent.com
+            </a>
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
