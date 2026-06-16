@@ -1,0 +1,212 @@
+.page-shell {
+    width: 90%;
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.site-header {
+    background-color: #1f4f82;
+    background-image: url("../assets/images/alu.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 1rem;
+}
+
+.site-header__shell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.site-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.site-header__brand h1 {
+    color: white;
+}
+
+.site-header__controls {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.site-nav__list {
+    display: flex;
+    gap: 1rem;
+}
+
+.site-nav a {
+    color: white;
+    padding: .5rem;
+}
+
+.site-nav a:hover {
+    text-decoration: underline;
+}
+
+.search-form {
+    display: flex;
+    gap: .5rem;
+}
+
+.search-form input {
+    min-width: 15rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.dashboard-stat {
+    background: white;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.dashboard-stat__value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.library-controls {
+    margin-bottom: 2rem;
+}
+
+.library-controls__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.library-controls__toggles {
+    display: flex;
+    gap: 1rem;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.book-card {
+    background: white;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.book-card__cover {
+    width: 100%;
+}
+
+.book-card__content {
+    padding: 1rem;
+}
+
+.book-card__tag {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: .3rem .8rem;
+    border-radius: 1rem;
+    margin-top: .5rem;
+}
+
+.book-card__actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.book-form {
+    background: white;
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.book-form__group {
+    display: grid;
+    gap: .5rem;
+}
+
+.notes-toolbar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.notes-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.note-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.note-card__actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.note-card__badge {
+    display: inline-block;
+    background: gold;
+    color: black;
+    padding: .3rem .7rem;
+    border-radius: 1rem;
+    margin-top: .75rem;
+}
+
+.settings-form {
+    background: white;
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+fieldset {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #cccccc;
+}
+
+legend {
+    font-weight: bold;
+}
+
+#about dl {
+    margin-top: 1.5rem;
+}
+
+#about dt {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+#about dd {
+    margin-left: 1rem;
+}
