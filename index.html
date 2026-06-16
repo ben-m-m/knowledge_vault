@@ -43,7 +43,8 @@
                         Search books or notes
                     </label>
 
-                    <input type="search" id="global-search" name="search" placeholder="Search books or notes" autocomplete="off">
+                    <input type="search" id="global-search" name="search" placeholder="Search books or notes"
+                        autocomplete="off">
 
                     <button type="submit">
                         Search
@@ -71,443 +72,456 @@
         <div class="page-shell">
 
 
-        <section id="dashboard" aria-labelledby="dashboard-heading">
-
-            <h2 id="dashboard-heading">Dashboard</h2>
-
-            <div class="stats-grid">
-
-                <article class="dashboard-stat">
-                    <h3 id="total-books-label">Total Books</h3>
-                    <output id="total-books" class="dashboard-stat__value" aria-labelledby="total-books-label">0</output>
-                </article>
-
-                <article class="dashboard-stat">
-                    <h3 id="total-pages-label">Total Pages</h3>
-                    <output id="total-pages" class="dashboard-stat__value" aria-labelledby="total-pages-label">0</output>
-                </article>
-
-                <article class="dashboard-stat">
-                    <h3 id="top-tag-label">Top Tag</h3>
-                    <output id="top-tag" class="dashboard-stat__value" aria-labelledby="top-tag-label">None</output>
-                </article>
-
-                <article class="dashboard-stat">
-                    <h3 id="reading-goal-label">Reading Goal</h3>
-                    <output id="reading-goal-output" class="dashboard-stat__value" aria-labelledby="reading-goal-label">0 / 5000 Pages</output>
-                </article>
-
-                <article class="dashboard-stat">
-                    <h3 id="recently-added-label">Recently Added</h3>
-                    <output id="recently-added" class="dashboard-stat__value" aria-labelledby="recently-added-label">Mythology</output>
-                </article>
-
-                <article class="dashboard-stat">
-                    <h3 id="currently-reading-label">Currently Reading</h3>
-                    <output id="currently-reading" class="dashboard-stat__value" aria-labelledby="currently-reading-label">Mythology</output>
-                </article>
-
-            </div>
-
-        </section>
-
-        <section id="library" aria-labelledby="library-heading">
-
-            <h2 id="library-heading">My Library</h2>
-
-            <div class="library-controls">
-                <form class="library-controls__form" role="search" aria-label="Library search and controls">
-
-                    <label for="library-search" class="sr-only">Search library</label>
-                    <input type="search" id="library-search" name="library-search" placeholder="Search books or notes in library" autocomplete="off">
-                    <div class="form-error" id="error-library-search" aria-live="polite">&nbsp;</div>
-
-                    <div class="library-controls__toggles">
-                        <label>
-                            <input type="checkbox" id="library-regex" name="library-regex">
-                            Regex Search
-                        </label>
-
-                        <label>
-                            <input type="checkbox" id="library-case" name="library-case">
-                            Case Sensitive
-                        </label>
-                    </div>
-
-                    <label for="book-sort">Sort</label>
-                    <select id="book-sort" name="book-sort">
-                        <option>Title (A-Z)</option>
-                        <option>Title (Z-A)</option>
-                        <option>Pages (Low-High)</option>
-                        <option>Pages (High-Low)</option>
-                        <option>Newest</option>
-                        <option>Oldest</option>
-                    </select>
-
-                </form>
-            </div>
-
-            <div class="book-grid" id="book-grid">
-
-                <article class="book-card" data-book-id="mythology" data-status="reading">
-
-                    <img src="assets/images/placeholder-cover.png" alt="Mythology book cover placeholder" class="book-card__cover"
-                        loading="lazy">
-
-                    <div class="book-card__content">
-
-                        <h3>Mythology</h3>
-
-                        <p class="book-card__author">
-                            <strong>Author:</strong>Edith Hamilton
-                        </p>
-
-                        <p class="book-card__pages">
-                            <strong>Pages:</strong> 450
-                        </p>
-
-                        <p>
-                            <strong>Status:</strong> Reading
-                        </p>
-
-                        <p>
-                            <strong>Rating:</strong> 5
-                        </p>
-
-                        <span class="book-card__tag">Fiction</span>
-                    </div>
-
-                    <div class="book-card__actions">
-
-                        <button type="button" class="view-btn" data-action="view" aria-label="View Mythology">View</button>
-                        <button type="button" class="edit-btn" data-action="edit" aria-label="Edit Mythology">Edit</button>
-                        <button type="button" class="delete-btn" data-action="delete" aria-label="Delete Mythology">Delete</button>
-
-                    </div>
-
-                </article>
-
-                <article class="book-card" data-book-id="atomic-habits" data-status="reading">
-
-                    <img src="assets/images/placeholder-cover.png" alt="Atomic Habits book cover placeholder" class="book-card__cover"
-                        loading="lazy">
-
-                    <div class="book-card__content">
-
-                        <h3>Atomic Habits</h3>
-
-                        <p class="book-card__author">
-                            <strong>Author:</strong>James Cleer
-                        </p>
-
-                        <p class="book-card__pages">
-                            <strong>Pages:</strong> 300
-                        </p>
-
-                        <p>
-                            <strong>Status:</strong> Reading
-                        </p>
-
-                        <p>
-                            <strong>Rating:</strong> 5
-                        </p>
-
-                        <span class="book-card__tag">self-Help</span>
-                    </div>
-
-                    <div class="book-card__actions">
-
-                        <button type="button" class="view-btn" data-action="view" aria-label="View Atomic Habits">View</button>
-                        <button type="button" class="edit-btn" data-action="edit" aria-label="Edit Atomic Habits">Edit</button>
-                        <button type="button" class="delete-btn" data-action="delete" aria-label="Delete Atomic Habits">Delete</button>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-        <section id="add-book" aria-labelledby="add-book-heading">
-
-            <h2 id="add-book-heading">Add Book</h2>
-
-            <form class="book-form">
-
-                <div class="book-form__group">
-
-                    <label for="book-title">Book Title</label>
-                    <input type="text" id="book-title" name="title" required>
-                    <div class="form-error" id="error-book-title" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-author">Author</label>
-                    <input type="text" id="book-author" name="author" autocomplete="name" required>
-                    <div class="form-error" id="error-book-author" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-pages">Pages</label>
-                    <input type="number" id="book-pages" name="pages" required>
-                    <div class="form-error" id="error-book-pages" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-tag">Tag</label>
-                    <input type="text" id="book-tag" name="tag" autocomplete="off">
-                    <div class="form-error" id="error-book-tag" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-status">Reading Status</label>
-
-                    <select id="book-status" name="status" required>
-
-                        <option>Want to Read</option>
-
-                        <option>Reading</option>
-
-                        <option>Completed</option>
-
-                    </select>
-                    <div class="form-error" id="error-book-status" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-rating">Rating</label>
-
-                    <input type="range" id="book-rating" name="rating" min="1" max="5" value="3">
-                    <div class="form-error" id="error-book-rating" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-date-added">Date Added</label>
-                    <input type="date" id="book-date-added" name="date-added">
-                    <div class="form-error" id="error-book-date-added" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-cover">
-                        Book Cover
-                    </label>
-                    <input type="file" id="book-cover" accept="image/*" name="cover">
-                    <div class="form-error" id="error-book-cover" aria-live="polite">&nbsp;</div>
-
-                    <label for="book-summary">
-
-                        First Note / Summary
-
-                    </label>
-
-                    <textarea id="book-summary" name="summary"></textarea>
-                    <div class="form-error" id="error-book-summary" aria-live="polite">&nbsp;</div>
+            <section id="dashboard" aria-labelledby="dashboard-heading">
+
+                <h2 id="dashboard-heading">Dashboard</h2>
+
+                <div class="stats-grid">
+
+                    <article class="dashboard-stat">
+                        <h3 id="total-books-label">Total Books</h3>
+                        <output id="total-books" class="dashboard-stat__value"
+                            aria-labelledby="total-books-label">0</output>
+                    </article>
+
+                    <article class="dashboard-stat">
+                        <h3 id="total-pages-label">Total Pages</h3>
+                        <output id="total-pages" class="dashboard-stat__value"
+                            aria-labelledby="total-pages-label">0</output>
+                    </article>
+
+                    <article class="dashboard-stat">
+                        <h3 id="top-tag-label">Top Tag</h3>
+                        <output id="top-tag" class="dashboard-stat__value" aria-labelledby="top-tag-label">None</output>
+                    </article>
+
+                    <article class="dashboard-stat">
+                        <h3 id="reading-goal-label">Reading Goal</h3>
+                        <output id="reading-goal-output" class="dashboard-stat__value"
+                            aria-labelledby="reading-goal-label">0 / 5000 Pages</output>
+                    </article>
+
+                    <article class="dashboard-stat">
+                        <h3 id="recently-added-label">Recently Added</h3>
+                        <output id="recently-added" class="dashboard-stat__value"
+                            aria-labelledby="recently-added-label">Mythology</output>
+                    </article>
+
+                    <article class="dashboard-stat">
+                        <h3 id="currently-reading-label">Currently Reading</h3>
+                        <output id="currently-reading" class="dashboard-stat__value"
+                            aria-labelledby="currently-reading-label">Mythology</output>
+                    </article>
 
                 </div>
 
-                <button type="submit">
+            </section>
 
-                    Save Book
+            <section id="library" aria-labelledby="library-heading">
 
-                </button>
+                <h2 id="library-heading">My Library</h2>
 
-            </form>
+                <div class="library-controls">
+                    <form class="library-controls__form" role="search" aria-label="Library search and controls">
 
-        </section>
+                        <label for="library-search" class="sr-only">Search library</label>
+                        <input type="search" id="library-search" name="library-search"
+                            placeholder="Search books or notes in library" autocomplete="off">
+                        <div class="form-error" id="error-library-search" aria-live="polite">&nbsp;</div>
 
-        <section id="notes" aria-labelledby="notes-heading">
+                        <div class="library-controls__toggles">
+                            <label>
+                                <input type="checkbox" id="library-regex" name="library-regex">
+                                Regex Search
+                            </label>
 
-            <h2 id="notes-heading">My Notes</h2>
+                            <label>
+                                <input type="checkbox" id="library-case" name="library-case">
+                                Case Sensitive
+                            </label>
+                        </div>
 
-            <div class="notes-toolbar">
+                        <label for="book-sort">Sort</label>
+                        <select id="book-sort" name="book-sort">
+                            <option>Title (A-Z)</option>
+                            <option>Title (Z-A)</option>
+                            <option>Pages (Low-High)</option>
+                            <option>Pages (High-Low)</option>
+                            <option>Newest</option>
+                            <option>Oldest</option>
+                        </select>
 
-                <label for="note-search" class="sr-only">
-                    Search notes
-                </label>
+                    </form>
+                </div>
 
-                <input type="search" id="note-search" placeholder="Search notes..." name="note-search" autocomplete="off">
+                <div class="book-grid" id="book-grid">
 
-                <label for="note-sort">
-                    Sort
-                </label>
+                    <article class="book-card" data-book-id="mythology" data-status="reading">
 
-                <select id="note-sort" name="note-sort">
+                        <img src="assets/images/placeholder-cover.png" alt="Mythology book cover placeholder"
+                            class="book-card__cover" loading="lazy">
 
-                    <option>Newest</option>
-                    <option>Oldest</option>
-                    <option>Book Title (A-Z)</option>
+                        <div class="book-card__content">
 
-                </select>
+                            <h3>Mythology</h3>
 
-                <button type="button" class="btn btn--secondary" data-filter="recent">
-                    Recent
-                </button>
+                            <p class="book-card__author">
+                                <strong>Author:</strong>Edith Hamilton
+                            </p>
 
-                <button type="button" class="btn btn--secondary" data-filter="highlighted">
-                    Highlighted
-                </button>
+                            <p class="book-card__pages">
+                                <strong>Pages:</strong> 450
+                            </p>
 
-            </div>
+                            <p>
+                                <strong>Status:</strong> Reading
+                            </p>
 
+                            <p>
+                                <strong>Rating:</strong> 5
+                            </p>
 
-            <div id="notes-list" class="notes-list">
+                            <span class="book-card__tag">Fiction</span>
+                        </div>
 
-                <article class="note-card" data-note-id="mythology-highlight">
+                        <div class="book-card__actions">
 
-                    <div class="note-card__content">
-                        <h3>Mythology</h3>
+                            <button type="button" class="view-btn" data-action="view"
+                                aria-label="View Mythology">View</button>
+                            <button type="button" class="edit-btn" data-action="edit"
+                                aria-label="Edit Mythology">Edit</button>
+                            <button type="button" class="delete-btn" data-action="delete"
+                                aria-label="Delete Mythology">Delete</button>
 
-                        <p>
-                            The Greek and Roman tales of heroes, gods and myths...
-                        </p>
+                        </div>
 
-                        <p>
-                            <strong>Created:</strong>
-                            <time datetime="2026-06-12">
-                                June 12, 2026
-                            </time>
-                        </p>
+                    </article>
+
+                    <article class="book-card" data-book-id="atomic-habits" data-status="reading">
+
+                        <img src="assets/images/placeholder-cover.png" alt="Atomic Habits book cover placeholder"
+                            class="book-card__cover" loading="lazy">
+
+                        <div class="book-card__content">
+
+                            <h3>Atomic Habits</h3>
+
+                            <p class="book-card__author">
+                                <strong>Author:</strong>James Cleer
+                            </p>
+
+                            <p class="book-card__pages">
+                                <strong>Pages:</strong> 300
+                            </p>
+
+                            <p>
+                                <strong>Status:</strong> Reading
+                            </p>
+
+                            <p>
+                                <strong>Rating:</strong> 5
+                            </p>
+
+                            <span class="book-card__tag">self-Help</span>
+                        </div>
+
+                        <div class="book-card__actions">
+
+                            <button type="button" class="view-btn" data-action="view"
+                                aria-label="View Atomic Habits">View</button>
+                            <button type="button" class="edit-btn" data-action="edit"
+                                aria-label="Edit Atomic Habits">Edit</button>
+                            <button type="button" class="delete-btn" data-action="delete"
+                                aria-label="Delete Atomic Habits">Delete</button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <section id="add-book" aria-labelledby="add-book-heading">
+
+                <h2 id="add-book-heading">Add Book</h2>
+
+                <form class="book-form">
+
+                    <div class="book-form__group">
+
+                        <label for="book-title">Book Title</label>
+                        <input type="text" id="book-title" name="title" required>
+                        <div class="form-error" id="error-book-title" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-author">Author</label>
+                        <input type="text" id="book-author" name="author" autocomplete="name" required>
+                        <div class="form-error" id="error-book-author" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-pages">Pages</label>
+                        <input type="number" id="book-pages" name="pages" required>
+                        <div class="form-error" id="error-book-pages" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-tag">Tag</label>
+                        <input type="text" id="book-tag" name="tag" autocomplete="off">
+                        <div class="form-error" id="error-book-tag" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-status">Reading Status</label>
+
+                        <select id="book-status" name="status" required>
+
+                            <option>Want to Read</option>
+
+                            <option>Reading</option>
+
+                            <option>Completed</option>
+
+                        </select>
+                        <div class="form-error" id="error-book-status" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-rating">Rating</label>
+
+                        <input type="range" id="book-rating" name="rating" min="1" max="5" value="3">
+                        <div class="form-error" id="error-book-rating" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-date-added">Date Added</label>
+                        <input type="date" id="book-date-added" name="date-added">
+                        <div class="form-error" id="error-book-date-added" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-cover">
+                            Book Cover
+                        </label>
+                        <input type="file" id="book-cover" accept="image/*" name="cover">
+                        <div class="form-error" id="error-book-cover" aria-live="polite">&nbsp;</div>
+
+                        <label for="book-summary">
+
+                            First Note / Summary
+
+                        </label>
+
+                        <textarea id="book-summary" name="summary"></textarea>
+                        <div class="form-error" id="error-book-summary" aria-live="polite">&nbsp;</div>
+
                     </div>
 
-                    <span class="note-card__badge">
-                        Highlight
-                    </span>
+                    <button type="submit">
 
-                    <div class="note-card__actions">
+                        Save Book
 
-                        <button type="button" class="btn btn--secondary" disabled aria-label="Edit Mythology note">
-                            Edit note
-                        </button>
+                    </button>
 
-                        <button type="button" class="btn btn--danger" disabled aria-label="Delete Mythology note">
-                            Delete note
-                        </button>
+                </form>
 
-                    </div>
+            </section>
 
-                </article>
+            <section id="notes" aria-labelledby="notes-heading">
 
-            </div>
+                <h2 id="notes-heading">My Notes</h2>
 
-        </section>
+                <div class="notes-toolbar">
 
-        <section id="settings" aria-labelledby="settings-heading">
-
-            <h2 id="settings-heading">
-                Settings
-            </h2>
-
-            <form class="settings-form">
-
-                <fieldset>
-
-                    <legend>Reading Goals</legend>
-
-                    <label for="reading-goal">
-                        Reading Goal (Pages)
+                    <label for="note-search" class="sr-only">
+                        Search notes
                     </label>
 
-                    <input type="number" id="reading-goal" name="reading-goal" value="5000">
-                    <div class="form-error" id="error-reading-goal" aria-live="polite">&nbsp;</div>
+                    <input type="search" id="note-search" placeholder="Search notes..." name="note-search"
+                        autocomplete="off">
 
-                    <label for="reading-speed">
-                        Reading Speed (Pages/Hour)
+                    <label for="note-sort">
+                        Sort
                     </label>
 
-                    <input type="number" id="reading-speed" name="reading-speed" value="50">
-                    <div class="form-error" id="error-reading-speed" aria-live="polite">&nbsp;</div>
+                    <select id="note-sort" name="note-sort">
 
-                </fieldset>
-
-                <fieldset>
-
-                    <legend>Conversion</legend>
-
-
-                    <label for="preferred-unit">
-                        Preferred Unit
-                    </label>
-
-                    <select id="preferred-unit" name="preferred-unit">
-
-                        <option>Pages</option>
-
-                        <option>Chapters</option>
+                        <option>Newest</option>
+                        <option>Oldest</option>
+                        <option>Book Title (A-Z)</option>
 
                     </select>
-                    <div class="form-error" id="error-preferred-unit" aria-live="polite">&nbsp;</div>
 
-                </fieldset>
-
-
-                <fieldset>
-
-                    <legend>Import / Export</legend>
-
-                    <button type="button" class="btn btn--secondary" data-action="import-json">
-                        Import JSON
+                    <button type="button" class="btn btn--secondary" data-filter="recent">
+                        Recent
                     </button>
 
-                    <button type="button" class="btn btn--primary" data-action="export-json">
-                        Export JSON
+                    <button type="button" class="btn btn--secondary" data-filter="highlighted">
+                        Highlighted
                     </button>
 
-                </fieldset>
+                </div>
 
-                <fieldset>
 
-                    <legend>Appearance</legend>
+                <div id="notes-list" class="notes-list">
 
-                    <label>
+                    <article class="note-card" data-note-id="mythology-highlight">
 
-                        <input type="radio" name="theme" value="light" checked>
+                        <div class="note-card__content">
+                            <h3>Mythology</h3>
 
-                        Light
+                            <p>
+                                The Greek and Roman tales of heroes, gods and myths...
+                            </p>
 
-                    </label>
+                            <p>
+                                <strong>Created:</strong>
+                                <time datetime="2026-06-12">
+                                    June 12, 2026
+                                </time>
+                            </p>
+                        </div>
 
-                    <label>
+                        <span class="note-card__badge">
+                            Highlight
+                        </span>
 
-                        <input type="radio" name="theme" value="dark">
+                        <div class="note-card__actions">
 
-                        Dark
+                            <button type="button" class="btn btn--secondary" disabled aria-label="Edit Mythology note">
+                                Edit note
+                            </button>
 
-                    </label>
+                            <button type="button" class="btn btn--danger" disabled aria-label="Delete Mythology note">
+                                Delete note
+                            </button>
 
-                </fieldset>
+                        </div>
 
-            </form>
+                    </article>
 
-        </section>
+                </div>
 
-        <section id="about" aria-labelledby="about-heading">
+            </section>
 
-            <h2 id="about-heading">
-                About KnowledgeVault
-            </h2>
+            <section id="settings" aria-labelledby="settings-heading">
 
-            <p>
-                KnowledgeVault helps students organize books,
-                reading progress and notes in one accessible,
-                responsive application.
-            </p>
+                <h2 id="settings-heading">
+                    Settings
+                </h2>
 
-            <dl>
+                <form class="settings-form">
 
-                <dt>Developer</dt>
-                <dd>Ben M</dd>
+                    <fieldset>
 
-                <dt>GitHub</dt>
-                <dd>
-                    <a href="https://github.com/ben-m-m">
-                        github.com/ben-m-m
-                    </a>
-                </dd>
+                        <legend>Reading Goals</legend>
 
-                <dt>Email</dt>
-                <dd>
-                    <a href="mailto:b.maina1@alustudent.com">
-                        b.maina1@alustudent.com
-                    </a>
-                </dd>
+                        <label for="reading-goal">
+                            Reading Goal (Pages)
+                        </label>
 
-                <dt>Version</dt>
-                <dd>1.0.0</dd>
+                        <input type="number" id="reading-goal" name="reading-goal" value="5000">
+                        <div class="form-error" id="error-reading-goal" aria-live="polite">&nbsp;</div>
 
-            </dl>
+                        <label for="reading-speed">
+                            Reading Speed (Pages/Hour)
+                        </label>
 
-        </section>
+                        <input type="number" id="reading-speed" name="reading-speed" value="50">
+                        <div class="form-error" id="error-reading-speed" aria-live="polite">&nbsp;</div>
 
-        <div id="status-message" role="status" aria-live="polite">
+                    </fieldset>
 
-        </div>
+                    <fieldset>
+
+                        <legend>Conversion</legend>
+
+
+                        <label for="preferred-unit">
+                            Preferred Unit
+                        </label>
+
+                        <select id="preferred-unit" name="preferred-unit">
+
+                            <option>Pages</option>
+
+                            <option>Chapters</option>
+
+                        </select>
+                        <div class="form-error" id="error-preferred-unit" aria-live="polite">&nbsp;</div>
+
+                    </fieldset>
+
+
+                    <fieldset>
+
+                        <legend>Import / Export</legend>
+
+                        <button type="button" class="btn btn--secondary" data-action="import-json">
+                            Import JSON
+                        </button>
+
+                        <button type="button" class="btn btn--primary" data-action="export-json">
+                            Export JSON
+                        </button>
+
+                    </fieldset>
+
+                    <fieldset>
+
+                        <legend>Appearance</legend>
+
+                        <label>
+
+                            <input type="radio" name="theme" value="light" checked>
+
+                            Light
+
+                        </label>
+
+                        <label>
+
+                            <input type="radio" name="theme" value="dark">
+
+                            Dark
+
+                        </label>
+
+                    </fieldset>
+
+                </form>
+
+            </section>
+
+            <section id="about" aria-labelledby="about-heading">
+
+                <h2 id="about-heading">
+                    About KnowledgeVault
+                </h2>
+
+                <p>
+                    KnowledgeVault helps students organize books,
+                    reading progress and notes in one accessible,
+                    responsive application.
+                </p>
+
+                <dl>
+
+                    <dt>Developer</dt>
+                    <dd>Ben M</dd>
+
+                    <dt>GitHub</dt>
+                    <dd>
+                        <a href="https://github.com/ben-m-m">
+                            github.com/ben-m-m
+                        </a>
+                    </dd>
+
+                    <dt>Email</dt>
+                    <dd>
+                        <a href="mailto:b.maina1@alustudent.com">
+                            b.maina1@alustudent.com
+                        </a>
+                    </dd>
+
+                    <dt>Version</dt>
+                    <dd>1.0.0</dd>
+
+                </dl>
+
+            </section>
+
+            <div id="status-message" role="status" aria-live="polite">
+
+            </div>
 
         </div>
 
@@ -526,6 +540,14 @@
 
     </footer>
 
+    <script src="styles/storage.js"></script>
+    <script src="styles/validation.js"></script>
+    <script src="styles/books.js"></script>
+    <script src="styles/notes.js"></script>
+    <script src="styles/ui.js"></script>
+    <script src="styles/app.js"></script>
+
 </body>
+
 
 </html>
