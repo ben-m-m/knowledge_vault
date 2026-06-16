@@ -40,7 +40,8 @@
 
 .site-nav__list {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: .5rem;
 }
 
 .site-nav a {
@@ -54,6 +55,7 @@
 
 .search-form {
     display: flex;
+    flex-direction: column;
     gap: .5rem;
 }
 
@@ -69,7 +71,7 @@
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
@@ -103,11 +105,13 @@
 
 .book-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit,minmax(18rem,1fr));
     gap: 2rem;
 }
 
 .book-card {
+    display: flex;
+    flex-direction: column;
     background: white;
     border-radius: .5rem;
     overflow: hidden;
@@ -116,10 +120,13 @@
 
 .book-card__cover {
     width: 100%;
+    height: 18rem;
+    object-fit: cover;
 }
 
 .book-card__content {
     padding: 1rem;
+    flex: 1;
 }
 
 .book-card__tag {
@@ -133,8 +140,14 @@
 
 .book-card__actions {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .5rem;
     padding: 1rem;
+}
+
+.book-card__actions button {
+    flex: 1;
+    min-width: 5rem;
 }
 
 .book-form {
@@ -146,6 +159,8 @@
 .book-form__group {
     display: grid;
     gap: .5rem;
+    max-width: 40rem;
+    margin: auto;
 }
 
 .notes-toolbar {
@@ -157,6 +172,7 @@
 
 .notes-list {
     display: grid;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
@@ -168,9 +184,15 @@
 }
 
 .note-card__actions {
-    margin-top: 1rem;
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: 1rem;
+}
+
+.note-card__actions button {
+    flex: 1;
+    min-width: 6rem;
 }
 
 .note-card__badge {
@@ -186,6 +208,8 @@
     background: white;
     padding: 2rem;
     border-radius: .5rem;
+    max-width: 45rem;
+    margin:auto;
 }
 
 fieldset {

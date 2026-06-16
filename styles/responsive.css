@@ -12,6 +12,14 @@
     .stats-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+    
+    .search-form{
+        flex-direction: row;
+    }
+
+    .site-nav__list{
+        flex-direction: row;
+    }
 
     .notes-list {
         grid-template-columns: repeat(2, 1fr);
