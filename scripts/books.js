@@ -2,10 +2,18 @@
 
 const bookForm = document.querySelector(".book-form");
 const bookGrid = document.getElementById("book-grid");
-const saveButton =bookForm.querySelector('button[type="submit"]');
+const librarySearch = document.getElementById("library-search");
+
+const libraryCase = document.getElementById("library-case");
+const libraryRegex = document.getElementById("library-regex");
+const bookSort = document.getElementById("book-sort");
 
 let editingIndex = null;
+let saveButton = null;
 
+if (bookForm) {
+    saveButton = bookForm.querySelector('button[type="submit"]');
+}
 
 //initialize the book form and display existing books
 function initializeBookForm() {
@@ -14,14 +22,74 @@ function initializeBookForm() {
     }
     bookForm.addEventListener("submit", bookSubmit);
     bookGrid.addEventListener("click", handleBookActions); //Edit or delete actions
+    librarySearch.addEventListener("input", searchBooks); // Listens for keyboard input
+    libraryCase.addEventListener("change", searchBooks);
+    libraryRegex.addEventListener("change", searchBooks);
+    bookSort.addEventListener("change", searchBooks);
 
     renderBooks();
 }
+
+//validation due to error helper functions
+
+function clearErrors() {
+    document.querySelectorAll(".form-error").forEach(function(error) {
+        error.textContent = "";
+    });
+}
+
+function showError(id, message) {
+    document.getElementById(id).textContent = message;
+}
+//validation function
+function validateBook(book) {
+    clearErrors();
+
+    let valid = true;
+
+    if (book.title === "") {
+        showError("erro-book-title", "Title is Required!");
+        valid = false;
+    }
+    if (book.author === "") {
+        showError("error-book-author", "Author is also required!");
+        valid = false;
+    }
+    if (book.pages <=0 || Number.isNaN(book.pages)) {
+        showError("error-book-pages", "Pages must be more than 0.");
+        valid = false;
+    }
+
+    if (book.rating < 1 || book.rating > 5) {
+        showError("error-book-rating", "Rating must be between 1 and 5.")
+        valid = false;
+    }
+
+    const books = getBooks();
+    const duplicate = books.some(function(existingBook, index) {
+        if (editingIndex === index) {
+            return false;
+        }
+
+        return (
+            existingBook.title.toLowerCase() === book.title.toLowerCase()
+        );
+    });
+
+    if (duplicate) {
+        showError("error-book-title", "This book already exists!");
+        valid = false;
+    }
+
+    return valid;
+}
+
 
 //Handles the form submition and saves new book details
 
 function bookSubmit(event) {
     event.preventDefault();
+    console.log("Book Submitted")
 
     const book = {
         title: document.getElementById("book-title").value.trim(),
@@ -34,6 +102,10 @@ function bookSubmit(event) {
         dateAdded: document.getElementById("book-date-added").value
 
     };
+
+    if (!validateBook(book)) {
+        return
+    }
 
     const books = getBooks();
     //checks if its editing or adding a new book in form field
@@ -49,8 +121,9 @@ function bookSubmit(event) {
     }
     
     saveBooks(books);
-    renderBooks();
+    searchBooks();
     bookForm.reset();
+    clearErrors();
     
 }
 
@@ -110,7 +183,7 @@ function deleteBook(index) {
 
     books.splice(index, 1);
     saveBooks(books);
-    renderBooks();
+    searchBooks();
 }
 
 // Editing books section
@@ -136,16 +209,97 @@ function editBook(index) {
     document.getElementById("book-date-added").value = book.dateAdded;
 }
 
+//search books function
+function searchBooks(event) {
+
+    let books = getBooks();
+    const searchText = librarySearch.value;
+
+    const useCase = libraryCase.checked;
+    const useRegex = libraryRegex.checked;
+    if (searchText !== "") {
+        books = books.filter(function(book) {
+
+            const fields = [
+                book.title,
+                book.author,
+                book.tag
+            ];
+
+            return fields.some(function(field) {
+
+                if (!field) {
+                    return false;
+                }
+                let value = field;
+
+                if (!useCase) {
+                    search = search.toLowerCase();
+                }
+
+                if(useRegex) {
+                    try {
+                        const regex = new RegExp(search);
+                        return regex.test(value);
+                    } catch {
+                        return false;
+                    }
+                }
+                return value.includes(search);
+            });
+        });
+    }
+
+    sortBooks(books);
+}
+
+// sort books function
+function sortBooks(books) {
+    switch (bookSort.value) {
+        case "Title (A-z)":
+            books.sort(function(a, b) {
+                return a.title.localeCompare(b.title);
+            });
+            
+            break;
+        case  "Title (Z-A)":
+            books.sort(function(a, b) {
+                return b.title.localeCompare(a.title);
+            });
+
+            break;
+        case "Pages (Low-High)":
+            books.sort(function(a, b) {
+                return b.pages - a.pages;
+            });
+
+            break;
+        case "Newest":
+            books.sort(function(a, b) {
+                return new Date(b.dateAdded) - new Date(a.dateAdded);
+            });
+
+            break;
+        case "Oldest":
+            books.sort(function(a, b) {
+                return new Date(a.dateAdded) - new Date(b.dateAdded);
+            });
+
+            break;
+    }
+
+    renderBooks(books)
+}
 
 //rendering books function: Displays all books in library
 
-function renderBooks() {
+function renderBooks(bookList = getBooks()) {
 
     if (!bookGrid) {
         return;
     }
 
-    const books = getBooks();
+    const books = bookList;
     //If the library is blank, the user sees a message.
     if (books.length === 0) {
         bookGrid.innerHTML = `
@@ -160,6 +314,12 @@ function renderBooks() {
     bookGrid.innerHTML = "";
 
     books.forEach((book, index) => {
+
+        if (book === null){
+            return;
+        }
+
+
         const card = document.createElement("article");
         card.classList.add("book-card");
 
