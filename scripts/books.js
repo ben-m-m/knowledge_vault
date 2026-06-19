@@ -108,7 +108,8 @@ function bookSubmit(event) {
         status: document.getElementById("book-status").value,
         rating: Number(document.getElementById("book-rating").value),
         summary: document.getElementById("book-summary").value.trim(),
-        dateAdded: document.getElementById("book-date-added").value
+        dateAdded: document.getElementById("book-date-added").value || new Date().toISOString().split("T")[0],
+        createdAt: new Date().toISOString(),
 
     };
 

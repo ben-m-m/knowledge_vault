@@ -21,18 +21,29 @@ function updateTotalBooks(books) {
 function updateTotalPages(books) {
     let total = 0;
 
-    books.forEach(function(book) {
+    books.forEach(function (book) {
         total += book.pages;
     });
     document.getElementById("total-pages").textContent = total;
 }
 
 function updateCurrentlyReading(books) {
-    const current = books.find(function(book) {
+    const readingBooks = books.filter(function (book) {
         return book.status === "Reading";
     });
 
-    document.getElementById("currently-reading").textContent = current ? current.title : "None";
+    if (readingBooks.length === 0) {
+        document.getElementById("currently-reading").textContent = "None";
+        return;
+    }
+
+    readingBooks.sort(function (a, b) {
+        return new Date(b.createdAt || b.dateAdded) -
+            new Date(a.createdAt || a.dateAdded);
+    });
+
+    document.getElementById("currently-reading").textContent =
+        readingBooks[0].title;
 }
 
 function updateRecentlyAdded(books) {
@@ -42,8 +53,8 @@ function updateRecentlyAdded(books) {
         return;
     }
 
-    const newest = [...books].sort(function(a, b) {
-        return new Date(b.dateAdded) - new Date(a.dateAdded);
+    const newest = [...books].sort(function (a, b) {
+        return new Date(b.createdAt || b.dateAdded) - new Date(a.createdAt || a.dateAdded);
     });
     document.getElementById("recently-added").textContent = newest[0].title;
 }
@@ -51,14 +62,14 @@ function updateRecentlyAdded(books) {
 function updateTopTag(books) {
     const tags = {};
 
-    books.forEach(function(book) {
+    books.forEach(function (book) {
         if (!book.tag) {
             return;
         }
         if (!tags[book.tag]) {
             tags[book.tag] = 0;
         }
-        
+
         tags[book.tag]++;
     });
 
@@ -78,7 +89,7 @@ function updateTopTag(books) {
 function updateReadingGoal(books) {
     let pages = 0;
 
-    books.forEach(function(book) {
+    books.forEach(function (book) {
         pages += book.pages;
     });
 

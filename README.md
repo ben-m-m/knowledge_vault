@@ -6,6 +6,7 @@ Knowledge Vault is a responsive vanilla JavaScript app for managing books and no
 
 - Live site: [GitHub Pages](https://ben-m-m.github.io/knowledge_vault/)
 - Video description: [Video Description](#video-description)
+- Repo URL: [Repo] (https://github.com/ben-m-m/knowledge_vault)
 
 ## Overview
 
