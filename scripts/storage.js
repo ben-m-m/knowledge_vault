@@ -34,3 +34,4 @@ function getNotes() {
 function saveNotes(notes) {
     localStorage.setItem("notes", JSON.stringify(notes));
 }
+

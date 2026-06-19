@@ -27,13 +27,22 @@ function initializeBookForm() {
     libraryRegex.addEventListener("change", searchBooks);
     bookSort.addEventListener("change", searchBooks);
 
+    document.getElementById("export-books-btn")?.addEventListener("click", exportBooks);
+    document.getElementById("import-books-input")?.addEventListener("change", importBooks);
+
+    document.getElementById("import-books-btn")?.addEventListener("click", function () {
+
+        document.getElementById("import-books-input").click();
+
+    });
+
     renderBooks();
 }
 
 //validation due to error helper functions
 
 function clearErrors() {
-    document.querySelectorAll(".form-error").forEach(function(error) {
+    document.querySelectorAll(".form-error").forEach(function (error) {
         error.textContent = "";
     });
 }
@@ -55,7 +64,7 @@ function validateBook(book) {
         showError("error-book-author", "Author is also required!");
         valid = false;
     }
-    if (book.pages <=0 || Number.isNaN(book.pages)) {
+    if (book.pages <= 0 || Number.isNaN(book.pages)) {
         showError("error-book-pages", "Pages must be more than 0.");
         valid = false;
     }
@@ -66,7 +75,7 @@ function validateBook(book) {
     }
 
     const books = getBooks();
-    const duplicate = books.some(function(existingBook, index) {
+    const duplicate = books.some(function (existingBook, index) {
         if (editingIndex === index) {
             return false;
         }
@@ -119,19 +128,22 @@ function bookSubmit(event) {
 
         saveButton.textContent = "Save Book";
     }
-    
+
     saveBooks(books);
     searchBooks();
+    if (typeof loadBookOptions === "function") {
+        loadBookOptions();
+    }
     bookForm.reset();
     clearErrors();
     updateDashboard();
-    
+
 }
 
 // Handles books view, delete and edit buttons
 function handleBookActions(event) {
     const button = event.target.closest("button")
-    if (!button ) {
+    if (!button) {
         return;
     }
 
@@ -185,6 +197,9 @@ function deleteBook(index) {
     books.splice(index, 1);
     saveBooks(books);
     searchBooks();
+    if (typeof loadBookOptions === "functions") {
+        loadBookOptions();
+    }
     updateDashboard();
 }
 
@@ -220,7 +235,7 @@ function searchBooks(event) {
     const useCase = libraryCase.checked;
     const useRegex = libraryRegex.checked;
     if (searchText !== "") {
-        books = books.filter(function(book) {
+        books = books.filter(function (book) {
 
             const fields = [
                 book.title,
@@ -230,7 +245,7 @@ function searchBooks(event) {
                 book.summary
             ];
 
-            return fields.some(function(field) {
+            return fields.some(function (field) {
 
                 if (!field) {
                     return false;
@@ -243,7 +258,7 @@ function searchBooks(event) {
                     search = searchText.toLowerCase();
                 }
 
-                if(useRegex) {
+                if (useRegex) {
                     try {
                         const regex = new RegExp(search);
                         return regex.test(value);
@@ -263,37 +278,37 @@ function searchBooks(event) {
 function sortBooks(books) {
     switch (bookSort.value) {
         case "Title (A-Z)":
-            books.sort(function(a, b) {
+            books.sort(function (a, b) {
                 return a.title.localeCompare(b.title);
             });
-            
+
             break;
-        case  "Title (Z-A)":
-            books.sort(function(a, b) {
+        case "Title (Z-A)":
+            books.sort(function (a, b) {
                 return b.title.localeCompare(a.title);
             });
 
             break;
         case "Pages (Low-High)":
-            books.sort(function(a, b) {
+            books.sort(function (a, b) {
                 return a.pages - b.pages;
             });
 
             break;
         case "Pages (High-Low)":
-            books.sort(function(a, b) {
+            books.sort(function (a, b) {
                 return b.pages - a.pages;
             });
 
             break;
         case "Newest":
-            books.sort(function(a, b) {
+            books.sort(function (a, b) {
                 return new Date(b.dateAdded) - new Date(a.dateAdded);
             });
 
             break;
         case "Oldest":
-            books.sort(function(a, b) {
+            books.sort(function (a, b) {
                 return new Date(a.dateAdded) - new Date(b.dateAdded);
             });
 
@@ -326,13 +341,13 @@ function renderBooks(bookList = getBooks()) {
 
     bookGrid.innerHTML = "";
 
-    books.forEach(function(book) {
+    books.forEach(function (book) {
 
-        if (!book){
+        if (!book) {
             return;
         }
 
-        const originalIndex = allBooks.findIndex(function(originalBook){
+        const originalIndex = allBooks.findIndex(function (originalBook) {
             return (
                 originalBook.title === book.title &&
                 originalBook.author === book.author &&
@@ -396,4 +411,80 @@ function renderBooks(bookList = getBooks()) {
     });
 }
 
+//import and export books
+function exportBooks() {
+    const books = getBooks();
 
+    const dataStr = JSON.stringify(books, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "books-export.json";
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+}
+
+//import books
+function importBooks(event) {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        try {
+            const importedBooks = JSON.parse(e.target.result);
+
+            if (!Array.isArray(importedBooks)) {
+                alert("Invalid file format.");
+                return;
+            }
+
+            const existingBooks = getBooks();
+            //avoids importing duplicates
+            const merged = [...existingBooks];
+
+            importedBooks.forEach(function (book) {
+
+                const exists = merged.some(function (existingBook) {
+
+                    return (
+                        existingBook.title.toLowerCase() ===
+                        book.title.toLowerCase()
+                    );
+
+                });
+
+                if (!exists) {
+                    merged.push(book);
+                }
+
+            });
+
+            saveBooks(merged);
+
+            renderBooks();
+
+            if (typeof loadBookOptions === "function") {
+                loadBookOptions();
+            }
+
+            updateDashboard();
+
+            alert("Books imported successfully!");
+        } catch (err) {
+            alert("Error importing books file.");
+            console.error(err);
+        }
+    };
+
+    reader.readAsText(file);
+}

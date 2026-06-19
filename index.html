@@ -228,6 +228,14 @@
                         Save Book
 
                     </button>
+                    <button type="button" id="import-books-btn">
+                        Import Books
+                    </button>
+                    <input type="file" id="import-books-input" accept=".json" hidden>
+
+                    <button type="button" id="export-books-btn">
+                        Export Books
+                    </button>
 
                 </form>
 
@@ -383,11 +391,15 @@
 
                         <legend>Import / Export</legend>
 
-                        <button type="button" class="btn btn--secondary" data-action="import-json">
+                        <button type="button" id="import-notes-btn" class="btn btn--secondary">
+
                             Import JSON
+
                         </button>
 
-                        <button type="button" class="btn btn--primary" data-action="export-json">
+                        <input type="file" id="import-notes-input" accept=".json" hidden>
+
+                        <button type="button" id="export-notes-btn" class="btn btn--primary" data-action="export-json">
                             Export JSON
                         </button>
 

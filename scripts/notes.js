@@ -13,14 +13,6 @@ if (noteForm) {
     noteSaveButton = noteForm.querySelector('button[type="submit"]');
 }
 
-//storage helper functions
-function getNotes() {
-    return JSON.parse(localStorage.getItem("notes")) || [];
-}
-
-function saveNotes(notes) {
-    localStorage.setItem("notes", JSON.stringify(notes));
-}
 
 //initializing notes
 
@@ -38,6 +30,13 @@ function initializeNotes() {
 
     noteFilters.forEach(function (button) {
         button.addEventListener("click", handleFilter);
+    });
+
+    document.getElementById("export-notes-btn")?.addEventListener("click", exportNotes)
+    document.getElementById("import-notes-input")?.addEventListener("change", importNotes);
+    document.getElementById("import-notes-btn")?.addEventListener("click", function () {
+        document.getElementById("import-notes-input").click();
+
     });
 
     loadBookOptions();
@@ -172,9 +171,10 @@ function handleNoteActions(event) {
     }
 
     if (event.target.classList.contains("view-note-btn")) {
-        alert(`${note.title}\n\n${note.content}`
 
-        );
+        const note = notes[index];
+
+        alert(`${note.title}\n\n${note.content}`);
     }
 }
 
@@ -236,3 +236,57 @@ function handleFilter(event) {
 
     renderNotes(notes)
 }
+
+//import and export functions.
+//export
+function exportNotes() {
+    const notes = getNotes();
+    const dataStr = JSON.stringify(notes, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url
+    a.download = "notes-export.json"
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+}
+
+//import json
+function importNotes(event) {
+    const file = event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        try {
+            const importedNotes = JSON.parse(e.target.result);
+
+            if (!Array.isArray(importedNotes)) {
+                alert("Invalid file format.");
+                return;
+            }
+
+            const existingNotes = getNotes();
+
+            const merged = [...existingNotes, ...importedNotes] //merge
+
+            saveNotes(merged);
+            renderNotes();
+
+            alert("Notes imported successfully!");
+        } catch (err) {
+            alert("Error importing file.");
+            console.error(err);
+        }
+    };
+    reader.readAsText(file)
+}
+

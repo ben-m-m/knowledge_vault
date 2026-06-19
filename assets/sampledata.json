@@ -1,0 +1,20 @@
+[
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "pages": 1925,
+    "tags": ["Classics", "1920s"]
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "pages": 1949,
+    "tags": ["Sci-Fi", "Political Fiction"]
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "pages": 1960,
+    "tags": ["Classics", "Coming-of-age"]
+  }
+]
