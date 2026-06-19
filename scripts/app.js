@@ -5,4 +5,5 @@ function initializeApp() {
     initializeBookForm();
     initializeDashboard();
     initializeNotes();
+    initializeTheme();
 }

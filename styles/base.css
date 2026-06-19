@@ -15,21 +15,14 @@ body {
 
 main {
     width: 100%;
-    padding-top: 120px;
+    /* padding-top: 18rem; */
 }
 
 section {
     padding: 3rem 1rem;
 }
 
-.site-header {
-    background-color: #1f4f82;
-    background-image: url("../assets/images/alu.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: white;
-}
+
 
 .logo {
     width: 4rem;
@@ -225,8 +218,64 @@ footer a:hover {
     text-decoration: underline;
 }
 
-.site-header{
+.site-header {
     position: fixed;
     width: 100%;
+}
+
+body,
+header,
+footer,
+section,
+article,
+button,
+input,
+textarea,
+select {
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* dark theme css */
+body.dark-theme {
+    background-color: #666565;
+    color: #eaeaea;
+}
+
+/* Common layout elements */
+body.dark-theme header,
+body.dark-theme footer,
+body.dark-theme section,
+body.dark-theme article {
+    background-color: #666565;
+    color: #eaeaea;
+}
+
+/* Inputs */
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+    background-color: #666565;
+    color: #eaeaea;
+    border: 1px solid #444;
+}
+
+/* Buttons */
+body.dark-theme button {
+    background-color: #666565;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.dark-theme a {
+    color: #7ab7ff;
+}
+
+body.dark-theme label {
+    color: #363535;
 }
 
