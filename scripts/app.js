@@ -4,4 +4,5 @@ function initializeApp() {
     console.log("Knowledge Vault Loaded");
     initializeBookForm();
     initializeDashboard();
+    initializeNotes();
 }

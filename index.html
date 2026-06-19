@@ -232,6 +232,64 @@
                 </form>
 
             </section>
+            <section id="add-note" aria-labelledby="add-note-heading">
+
+                <h2 id="add-note-heading">
+                    Add Note
+                </h2>
+
+                <form class="note-form" id="note-form">
+
+                    <label for="note-book">
+                        Book
+                    </label>
+
+                    <select id="note-book" name="book">
+                    </select>
+
+                    <div class="form-error" id="error-note-book" aria-live="polite">
+                        &nbsp;
+                    </div>
+
+
+                    <label for="note-title">
+                        Note Title
+                    </label>
+
+                    <input type="text" id="note-title" name="title">
+
+                    <div class="form-error" id="error-note-title" aria-live="polite">
+                        &nbsp;
+                    </div>
+
+
+                    <label for="note-content">
+                        Note
+                    </label>
+
+                    <textarea id="note-content" name="content"></textarea>
+
+                    <div class="form-error" id="error-note-content" aria-live="polite">
+                        &nbsp;
+                    </div>
+
+
+                    <label>
+
+                        <input type="checkbox" id="note-highlight" name="highlight">
+
+                        Highlight this note
+
+                    </label>
+
+
+                    <button type="submit">
+                        Save Note
+                    </button>
+
+                </form>
+
+            </section>
 
             <section id="notes" aria-labelledby="notes-heading">
 
@@ -268,45 +326,7 @@
 
                 </div>
 
-
-                <div id="notes-list" class="notes-list">
-
-                    <article class="note-card" data-note-id="mythology-highlight">
-
-                        <div class="note-card__content">
-                            <h3>Mythology</h3>
-
-                            <p>
-                                The Greek and Roman tales of heroes, gods and myths...
-                            </p>
-
-                            <p>
-                                <strong>Created:</strong>
-                                <time datetime="2026-06-12">
-                                    June 12, 2026
-                                </time>
-                            </p>
-                        </div>
-
-                        <span class="note-card__badge">
-                            Highlight
-                        </span>
-
-                        <div class="note-card__actions">
-
-                            <button type="button" class="btn btn--secondary" disabled aria-label="Edit Mythology note">
-                                Edit note
-                            </button>
-
-                            <button type="button" class="btn btn--danger" disabled aria-label="Delete Mythology note">
-                                Delete note
-                            </button>
-
-                        </div>
-
-                    </article>
-
-                </div>
+                <div id="notes-list" class="notes-list"></div>
 
             </section>
 
