@@ -48,7 +48,7 @@ function validateBook(book) {
     let valid = true;
 
     if (book.title === "") {
-        showError("erro-book-title", "Title is Required!");
+        showError("error-book-title", "Title is Required!");
         valid = false;
     }
     if (book.author === "") {
@@ -124,6 +124,7 @@ function bookSubmit(event) {
     searchBooks();
     bookForm.reset();
     clearErrors();
+    updateDashboard();
     
 }
 
@@ -184,6 +185,7 @@ function deleteBook(index) {
     books.splice(index, 1);
     saveBooks(books);
     searchBooks();
+    updateDashboard();
 }
 
 // Editing books section
@@ -223,7 +225,9 @@ function searchBooks(event) {
             const fields = [
                 book.title,
                 book.author,
-                book.tag
+                book.tag,
+                book.status,
+                book.summary
             ];
 
             return fields.some(function(field) {
@@ -232,9 +236,11 @@ function searchBooks(event) {
                     return false;
                 }
                 let value = field;
+                let search = searchText;
 
                 if (!useCase) {
-                    search = search.toLowerCase();
+                    value = value.toLowerCase();
+                    search = searchText.toLowerCase();
                 }
 
                 if(useRegex) {
@@ -256,7 +262,7 @@ function searchBooks(event) {
 // sort books function
 function sortBooks(books) {
     switch (bookSort.value) {
-        case "Title (A-z)":
+        case "Title (A-Z)":
             books.sort(function(a, b) {
                 return a.title.localeCompare(b.title);
             });
@@ -269,6 +275,12 @@ function sortBooks(books) {
 
             break;
         case "Pages (Low-High)":
+            books.sort(function(a, b) {
+                return a.pages - b.pages;
+            });
+
+            break;
+        case "Pages (High-Low)":
             books.sort(function(a, b) {
                 return b.pages - a.pages;
             });
@@ -300,6 +312,7 @@ function renderBooks(bookList = getBooks()) {
     }
 
     const books = bookList;
+    const allBooks = getBooks();
     //If the library is blank, the user sees a message.
     if (books.length === 0) {
         bookGrid.innerHTML = `
@@ -313,11 +326,20 @@ function renderBooks(bookList = getBooks()) {
 
     bookGrid.innerHTML = "";
 
-    books.forEach((book, index) => {
+    books.forEach(function(book) {
 
-        if (book === null){
+        if (!book){
             return;
         }
+
+        const originalIndex = allBooks.findIndex(function(originalBook){
+            return (
+                originalBook.title === book.title &&
+                originalBook.author === book.author &&
+                originalBook.dateAdded === book.dateAdded
+            );
+        });
+
 
 
         const card = document.createElement("article");
@@ -351,19 +373,19 @@ function renderBooks(bookList = getBooks()) {
 
                 <button type="button"
                         class="view-btn"
-                        data-index="${index}">
+                        data-index="${originalIndex}">
                     View
                 </button>
 
                 <button type="button"
                         class="edit-btn"
-                        data-index="${index}">
+                        data-index="${originalIndex}">
                     Edit
                 </button>
 
                 <button type="button"
                         class="delete-btn"
-                        data-index="${index}">
+                        data-index="${originalIndex}">
                     Delete
                 </button>
 
